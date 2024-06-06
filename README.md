@@ -9,6 +9,7 @@
 - [x] attach db to ui
 - [x] add authentication (clerk)
 - [ ] add image upload
+- [ ] _taint_ (server-only)
 - [ ] routing/image page (parallel route)
 - [ ] delete button with server actions
 - [ ] analytics (posthog)
