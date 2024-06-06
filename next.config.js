@@ -12,6 +12,7 @@ const config = {
         hostname: "utfs.io",
       },
     ],
+    unoptimized: true,
   },
   typescript: {
     ignoreBuildErrors: true,
