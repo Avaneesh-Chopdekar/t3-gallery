@@ -11,6 +11,7 @@
 - [x] add image upload
 - [x] _taint_ (server-only)
 - [x] routing/image page (parallel route)
+- [x] add toasts (shadcn ui)
 - [ ] delete button with server actions
 - [ ] analytics (posthog)
 - [ ] rate limiting (upstash)
