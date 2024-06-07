@@ -1,5 +1,6 @@
 import { getImage } from "~/server/queries";
 import Image from "next/image";
+import { clerkClient } from "@clerk/nextjs/server";
 
 export default async function FullPageImageView(props: { id: number }) {
   const { id } = props;
@@ -7,19 +8,31 @@ export default async function FullPageImageView(props: { id: number }) {
 
   const image = await getImage(id);
 
+  const uploaderInfo = await clerkClient.users.getUser(image.userId);
+
   return (
     <div className="flex h-full w-full min-w-0">
-      <div className="flex flex-shrink items-center justify-center">
+      <div className="flex w-1/2 items-center justify-center">
         <Image
           src={image.url}
           alt={image.name}
           width={384}
           height={384}
-          className="object-contain"
+          className="h-full w-full object-contain"
         />
       </div>
-      <div className="flex w-48 flex-shrink-0 flex-col border-l">
-        <p className="text-xl font-bold">{image.name}</p>
+      <div className="flex w-1/2 flex-col gap-2 border-l">
+        <p className="border-b p-2 text-center text-lg">{image.name}</p>
+
+        <div className="flex flex-col text-center">
+          <span>Uploaded by</span>
+          <span>{uploaderInfo.fullName}</span>
+        </div>
+
+        <div className="flex flex-col text-center">
+          <span>Created on</span>
+          <span>{new Date(image.createdAt).toLocaleDateString("en-IN")}</span>
+        </div>
       </div>
     </div>
   );
