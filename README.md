@@ -14,5 +14,5 @@
 - [x] add toasts (shadcn ui)
 - [x] delete button with server actions
 - [x] analytics (posthog)
-- [ ] rate limiting (upstash)
+- [x] rate limiting (upstash)
 <!-- - [ ]  -->
