@@ -3,6 +3,7 @@
 import { useUploadThing } from "~/utils/uploadthing";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { usePostHog } from "posthog-js/react";
 
 // inferred input off useUploadThing
 type Input = Parameters<typeof useUploadThing>;
@@ -71,8 +72,11 @@ export function UploadIcon() {
 }
 
 export default function SimpleUploadButton() {
+  const router = useRouter();
+  const posthog = usePostHog();
   const { inputProps } = useUploadThingInputProps("imageUploader", {
     onUploadBegin: () => {
+      posthog.capture("upload-begin");
       toast(
         <div className="flex gap-2 text-white">
           <LoadingIcon /> Uploading...
@@ -89,7 +93,6 @@ export default function SimpleUploadButton() {
       router.refresh();
     },
   });
-  const router = useRouter();
 
   return (
     <div>
